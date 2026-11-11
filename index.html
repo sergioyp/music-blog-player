@@ -73,9 +73,9 @@
     <button
       class="play-button"
       id="playButton"
-      aria-label="Reproducir música"
+      aria-label="Reproducir mÃºsica"
     >
-      <img src="assets/imagen.png" alt="Reproducir música">
+      <img src="assets/imagen.png" alt="Reproducir mÃºsica">
     </button>
 
     <audio id="music" loop preload="none">
@@ -93,14 +93,14 @@
         try {
           await music.play();
           button.classList.add("playing");
-          button.setAttribute("aria-label", "Pausar música");
+          button.setAttribute("aria-label", "Pausar mÃºsica");
         } catch (error) {
           console.error("Error al reproducir:", error);
         }
       } else {
         music.pause();
         button.classList.remove("playing");
-        button.setAttribute("aria-label", "Reproducir música");
+        button.setAttribute("aria-label", "Reproducir mÃºsica");
       }
     });
   </script>
