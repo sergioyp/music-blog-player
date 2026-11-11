@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .music-player {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .play-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .play-button img {
+      display: block;
+      width: 150px;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .play-button:hover img {
+      transform: scale(1.06);
+    }
+
+    .play-button:active img {
+      transform: scale(0.96);
+    }
+
+    .play-button.playing img {
+      animation: floating 2s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="music-player">
+
+    <button
+      class="play-button"
+      id="playButton"
+      aria-label="Reproducir música"
+    >
+      <img src="assets/imagen.png" alt="Reproducir música">
+    </button>
+
+    <audio id="music" loop preload="none">
+      <source src="assets/musica.mp3" type="audio/mpeg">
+    </audio>
+
+  </div>
+
+  <script>
+    const music = document.getElementById("music");
+    const button = document.getElementById("playButton");
+
+    button.addEventListener("click", async () => {
+      if (music.paused) {
+        try {
+          await music.play();
+          button.classList.add("playing");
+          button.setAttribute("aria-label", "Pausar música");
+        } catch (error) {
+          console.error("Error al reproducir:", error);
+        }
+      } else {
+        music.pause();
+        button.classList.remove("playing");
+        button.setAttribute("aria-label", "Reproducir música");
+      }
+    });
+  </script>
+
+</body>
+</html>
